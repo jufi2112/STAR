@@ -27,7 +27,7 @@ REQUIREMENTS = ["numpy", "chumpy", "opencv-python"]
 
 setuptools.setup(
      name='star',  
-     version='0.0.1',
+     version='0.0.2',
      author="Ahmed A. A. Osman",
      author_email="ahmed.osman@tuebingen.mpg.de",
      install_requires=REQUIREMENTS,
