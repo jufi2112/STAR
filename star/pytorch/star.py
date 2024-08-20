@@ -24,31 +24,28 @@ import torch
 import torch.nn as nn
 import numpy as np
 import os 
+from os import path as osp
 try:
     import cPickle as pickle
 except ImportError:
     import pickle
 from .utils import rodrigues , quat_feat , with_zeros
-from ..config import cfg 
 
 
 class STAR(nn.Module):
-    def __init__(self,gender='female',num_betas=10):
+    def __init__(self, model_path: str, gender='female',num_betas=10):
         super(STAR, self).__init__()
 
         if gender not in ['male','female','neutral']:
             raise RuntimeError('Invalid Gender')
 
-        if gender == 'male':
-            path_model = cfg.path_male_star
-        elif gender == 'female':
-            path_model = cfg.path_female_star
+        if osp.isdir(model_path):
+            path_model = osp.join(model_path, f'SUPR_{gender.upper()}.npz')
         else:
-            path_model = cfg.path_neutral_star
+            path_model = model_path
 
-        if not os.path.exists(path_model):
+        if not osp.exists(path_model):
             raise RuntimeError('Path does not exist %s' % (path_model))
-        import numpy as np
 
         star_model = np.load(path_model,allow_pickle=True)
         J_regressor = star_model['J_regressor']

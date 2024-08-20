@@ -90,14 +90,7 @@ pip install tensorflow-gpu==2.3
 ```
 5. Download the models from our website https://star.is.tue.mpg.de/
 
-6. Update the model paths in the config.py file.
-```python
-path_male_star = '/mypath/male/model.npz'
-path_female_star = '/mypath/female/model.npz'
-path_neutral_star = '/mypath/neutral/model.npz'
-```
-
-7. Install with pip
+6. Install with pip
 ```
 pip install .
 ```
