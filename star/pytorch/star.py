@@ -106,10 +106,10 @@ class STAR(nn.Module):
         v_shaped = torch.matmul(shapedirs, beta).view(-1, 6890, 3) + v_template
         J = torch.einsum('bik,ji->bjk', [v_shaped, self.J_regressor])
 
-        pose_quat = quat_feat(pose.view(-1, 3)).view(batch_size, -1)
+        pose_quat = quat_feat(pose.reshape(-1, 3)).view(batch_size, -1)
         pose_feat = torch.cat((pose_quat[:,4:],beta[:,1]),1)
 
-        R = rodrigues(pose.view(-1, 3)).view(batch_size, 24, 3, 3)
+        R = rodrigues(pose.reshape(-1, 3)).view(batch_size, 24, 3, 3)
         R = R.view(batch_size, 24, 3, 3)
 
         posedirs = self.posedirs[None, :].expand(batch_size, -1, -1)
