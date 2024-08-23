@@ -40,7 +40,7 @@ class STAR(nn.Module):
             raise RuntimeError('Invalid Gender')
 
         if osp.isdir(model_path):
-            path_model = osp.join(model_path, f'SUPR_{gender.upper()}.npz')
+            path_model = osp.join(model_path, f'star_{gender}.npz')
         else:
             path_model = model_path
 
